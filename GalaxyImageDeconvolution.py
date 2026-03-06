@@ -9,10 +9,17 @@ from scipy.ndimage import gaussian_filter
 from scipy.signal import wiener
 from skimage import restoration
 from scipy.signal import convolve2d as conv2
+import time
+
+start_time = time.time()
 
 # Section 1: Pulling data from NASA FITS database
 # Load image from FITS
-dataset = r"C:\Users\tybos\OneDrive\main\Research and Projects\Astro\Projects\Galaxy Deconvolution\502nmos.fits"
+
+# windows pc
+### dataset = r"C:\Users\tybos\OneDrive\main\Research and Projects\Astro\Projects\Galaxy Deconvolution\502nmos.fits"
+# mac virtual pull from github until i find resolution
+dataset = r"/Users/tyler/tsaburro/Projects/ImageDeconvolution/502nmos.fits"
 # ^ using r will turn the file into a raw string allowing you to actually find it in the project folder
 
 with fits.open(dataset) as hdul:
@@ -100,4 +107,8 @@ cbar = fig.colorbar(im, cax = cbar_ax, orientation = "horizontal", fraction = 0.
 cbar.set_label("Scaled Intensity")
 
 plt.tight_layout()
+
+end_time = time.time()
+print(end_time - start_time)
+
 plt.show()
